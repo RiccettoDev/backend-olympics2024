@@ -1,7 +1,11 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply } from "fastify";
+//-------------------------------
 import { CreateCountryController } from "./controllers/CreateCountryController";
 import { ListCountryController } from "./controllers/ListCountryController";
 import { DeleteCountryController } from "./controllers/DeleteCountryController";
+//-------------------------------
+import { CreateStadiumController } from "./controllers/stadium/CreateStadiumController";
+import { ListStadiumController } from "./controllers/stadium/ListStadiumController";
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions){
   // route test
@@ -22,5 +26,17 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
   // route DELETE Country
   fastify.delete('/country', async (request: FastifyRequest, reply: FastifyReply) => {
     return new DeleteCountryController().handle(request, reply)
+  })
+
+  //---------------------------------------
+
+  // route POST Stadium
+  fastify.post('/stadium', async (request: FastifyRequest, reply: FastifyReply) => {
+    return new CreateStadiumController().handle(request, reply)
+  })
+
+  // route GET Stadium
+  fastify.get('/stadium', async (request: FastifyRequest, reply: FastifyReply) => {
+    return new ListStadiumController().handle(request, reply)
   })
 }
