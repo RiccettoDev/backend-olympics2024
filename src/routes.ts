@@ -9,6 +9,7 @@ import { ListStadiumController } from "./controllers/stadium/ListStadiumControll
 import { DeleteStadiumController } from "./controllers/stadium/DeleteStadiumController";
 //-------------------------------
 import { CreateSportsController } from "./controllers/sports/CreateSportsController";
+import { ListSportsController } from "./controllers/sports/ListSportsController";
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions){
   // route test
@@ -53,5 +54,10 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
   // route POST Sports
   fastify.post('/sports', async (request: FastifyRequest, reply: FastifyReply) => {
     return new CreateSportsController().handle(request, reply)
+  })
+
+  // route GET Sports
+  fastify.get('/sports', async (request: FastifyRequest, reply: FastifyReply) => {
+    return new ListSportsController().handle(request, reply)
   })
 }
