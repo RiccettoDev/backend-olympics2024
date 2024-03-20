@@ -21,7 +21,7 @@ class UpdateSportsService{
     })
 
     if(!findSports){
-      throw new Error('Stadium not found!')
+      throw new Error('Sports not found!')
     }
 
     const sports = await prismaClient.sports.update({
